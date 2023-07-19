@@ -4,19 +4,19 @@
       "id": 1,
       "name": "Oysters - Smoked",
       "price": 19,
-      "checked": false
+      "checked": true
     },
     {
       "id": 2,
       "name": "Blouse / Shirt / Sweater",
       "price": 100,
-      "checked": true
+      "checked": false
     },
     {
       "id": 3,
       "name": "Wine - Prosecco Valdobiaddene",
       "price": 18,
-      "checked": true
+      "checked": false
     },
     {
       "id": 4,
@@ -34,7 +34,7 @@
       "id": 6,
       "name": "Tomato Paste",
       "price": 24,
-      "checked": true
+      "checked": false
     },
     {
       "id": 7,
@@ -46,7 +46,7 @@
       "id": 8,
       "name": "Pork - Belly Fresh",
       "price": 27,
-      "checked": true
+      "checked": false
     },
     {
       "id": 9,

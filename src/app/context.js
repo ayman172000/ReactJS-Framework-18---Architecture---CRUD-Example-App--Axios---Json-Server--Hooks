@@ -25,5 +25,5 @@ export const checkProduct=(product)=>{
 }
 
 export const updateProduct=(product)=>{
-    return productsApi.put("/products",product)
+    return productsApi.put(`/products/${product.id}`,product)
 }

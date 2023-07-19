@@ -5,6 +5,7 @@ import Products from "./component/Products";
 import "bootstrap/dist/css/bootstrap.css"
 import {useEffect, useState} from "react";
 import NewProduct from "./component/NewProduct";
+import EditProduct from "./component/EditProduct";
 function App() {
   const [currentRoot,setCurrentRoot] = useState("");
   //use effect permet de gerer les side effect
@@ -50,6 +51,7 @@ function App() {
           <Route path={"/home"} element={<Home/>}></Route>
           <Route path={"/products"} element={<Products/>}></Route>
           <Route path={"/newProduct"} element={<NewProduct/>}></Route>
+          <Route path={"/editProduct/:id"} element={<EditProduct/>}></Route>
         </Routes>
       </BrowserRouter>
   );

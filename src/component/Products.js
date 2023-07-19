@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCheck, faClose, faPencil, faSearch, faTrash} from "@fortawesome/free-solid-svg-icons";
+import {faCheck, faClose, faEdit, faPencil, faSearch, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {checkProduct, deleteProduct, getProducts} from "../app/context";
+import {useNavigate} from "react-router-dom";
 
 export default function Products() {
     const [query,setQuery] = useState("")
@@ -15,6 +16,7 @@ export default function Products() {
     useEffect(() => {
         handleGetProducts(state.keyword, state.currentPage, state.pageSize);
     }, [])
+    const navigate=useNavigate()
     const handleGetProducts = (keyword, page, size) => {
         getProducts(keyword, page, size).then(resp => {
             const totalElement = resp.headers.get("x-total-count")
@@ -24,8 +26,8 @@ export default function Products() {
                 ...state,
                 products: resp.data,
                 keyword: keyword,
-                page: page,
-                size: size,
+                currentPage: page,
+                pageSize: size,
                 totalPages: pages})
         })
             .catch(err => {
@@ -52,7 +54,8 @@ export default function Products() {
                 return p
             })
             //setState(newProducts)
-            setState({...state, products: newProducts})
+            setState({...state, products : newProducts})
+            handleGetProducts(state.keyword,state.currentPage,state.pageSize)
         }).catch(err => {
             console.log(err)
         })
@@ -127,8 +130,8 @@ export default function Products() {
                                                 </button>
                                             </td>
                                             <td>
-                                                <button className={"btn btn-warning"}>
-                                                    <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon>
+                                                <button className={"btn btn-warning"} onClick={()=>navigate(`/editProduct/${p.id}`)}>
+                                                    <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>
                                                 </button>
                                                 <button onClick={() => handleDeleteProduct(p)}
                                                         className={"btn btn-danger ms-2"}>
@@ -151,7 +154,8 @@ export default function Products() {
                                                     : "btn btn-outline-info ms-1"
                                             }
                                         >
-                                            {index + 1}</button>
+                                            {index + 1}
+                                        </button>
                                     </li>
                                 ))}
                             </ul>
