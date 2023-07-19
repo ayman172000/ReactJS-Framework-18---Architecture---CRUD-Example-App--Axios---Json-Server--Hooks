@@ -4,6 +4,7 @@ import Home from "./component/Home";
 import Products from "./component/Products";
 import "bootstrap/dist/css/bootstrap.css"
 import {useEffect, useState} from "react";
+import NewProduct from "./component/NewProduct";
 function App() {
   const [currentRoot,setCurrentRoot] = useState("");
   //use effect permet de gerer les side effect
@@ -35,11 +36,20 @@ function App() {
                   :'btn btn-outline-info ms-1'}
                     to={"/products"}>Products</Link>
             </li>
+              <li>
+                  <Link
+                      onClick={()=>setCurrentRoot("newProduct")}
+                      className={currentRoot === 'newProduct'
+                          ? 'btn btn-info ms-1'
+                          :'btn btn-outline-info ms-1'}
+                      to={"/newProduct"}>New Product</Link>
+              </li>
           </ul>
         </nav>
         <Routes>
           <Route path={"/home"} element={<Home/>}></Route>
           <Route path={"/products"} element={<Products/>}></Route>
+          <Route path={"/newProduct"} element={<NewProduct/>}></Route>
         </Routes>
       </BrowserRouter>
   );
