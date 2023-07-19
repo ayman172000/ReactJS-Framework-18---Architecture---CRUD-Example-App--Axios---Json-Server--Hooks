@@ -1,58 +1,28 @@
 {
   "products": [
     {
-      "id": 1,
-      "name": "Oysters - Smoked",
-      "price": 19,
-      "checked": true
-    },
-    {
-      "id": 2,
-      "name": "Blouse / Shirt / Sweater",
-      "price": 100,
-      "checked": false
-    },
-    {
-      "id": 3,
-      "name": "Wine - Prosecco Valdobiaddene",
-      "price": 18,
-      "checked": false
-    },
-    {
       "id": 4,
       "name": "Bread - Roll, Soft White Round",
       "price": 81,
       "checked": true
     },
     {
-      "id": 5,
-      "name": "Peas - Frozen",
-      "price": 42,
-      "checked": true
-    },
-    {
-      "id": 6,
-      "name": "Tomato Paste",
-      "price": 24,
-      "checked": false
-    },
-    {
       "id": 7,
       "name": "Cookie Trail Mix",
       "price": 36,
-      "checked": false
+      "checked": true
     },
     {
       "id": 8,
       "name": "Pork - Belly Fresh",
       "price": 27,
-      "checked": false
+      "checked": true
     },
     {
       "id": 9,
       "name": "Beer - Camerons Cream Ale",
       "price": 21,
-      "checked": false
+      "checked": true
     },
     {
       "id": 10,

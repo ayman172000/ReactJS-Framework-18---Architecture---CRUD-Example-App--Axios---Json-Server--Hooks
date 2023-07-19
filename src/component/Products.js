@@ -1,18 +1,12 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheck, faClose, faEdit, faPencil, faSearch, faTrash} from "@fortawesome/free-solid-svg-icons";
-import {checkProduct, deleteProduct, getProducts} from "../app/context";
+import {appContext, checkProduct, deleteProduct, getProducts} from "../app/context";
 import {useNavigate} from "react-router-dom";
 
 export default function Products() {
     const [query,setQuery] = useState("")
-    const [state, setState] = useState({
-        products: [],
-        currentPage: 1,
-        pageSize: 10,
-        keyword: "",
-        totalPages: 0
-    })
+    const [state,setState]=useContext(appContext)
     useEffect(() => {
         handleGetProducts(state.keyword, state.currentPage, state.pageSize);
     }, [])
@@ -38,7 +32,7 @@ export default function Products() {
         deleteProduct(givenProduct).then(res => {
             //handleGetProducts() premierre solution
             // bcp mieux
-            const newProducts = state.filter((p) => p.id != givenProduct.id)
+            const newProducts = state.products.filter((p) => p.id != givenProduct.id)
             //setState(newProducts)
             setState({...state, products: newProducts})
         })
@@ -48,9 +42,9 @@ export default function Products() {
     }
     const handleCheckProduct = (givenProduct) => {
         checkProduct(givenProduct).then(resp => {
-            const newProducts = state.map(p => {
+            const newProducts = state.products.map(p => {
                 if (p.id == givenProduct.id)
-                    givenProduct.checked = !p.checked
+                    p.checked = !p.checked
                 return p
             })
             //setState(newProducts)
@@ -82,7 +76,7 @@ export default function Products() {
     return (
         <div className={"p-1 m-1"}>
             <div className={"row"}>
-                <div className={"col-md-6"}>
+                <div className={"col"}>
                     <div className={"card"}>
                         <div className={"card-body"}>
                             <h3>Products Componenet</h3>
