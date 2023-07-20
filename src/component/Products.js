@@ -1,11 +1,11 @@
 import React, {useContext, useEffect, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCheck, faClose, faEdit, faPencil, faSearch, faTrash} from "@fortawesome/free-solid-svg-icons";
+import {faCheck, faClose, faEdit, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {appContext, checkProduct, deleteProduct, getProducts} from "../app/context";
 import {useNavigate} from "react-router-dom";
+import SearchForm from "./searchForm";
 
 export default function Products() {
-    const [query,setQuery] = useState("")
     const [state,setState]=useContext(appContext)
     useEffect(() => {
         handleGetProducts(state.keyword, state.currentPage, state.pageSize);
@@ -60,17 +60,9 @@ export default function Products() {
         })
         setProducts(newProducts)*/
     }
-
     const handleGoToPage = (page) => {
         setState({...state,currentPage:page })
         handleGetProducts(state.keyword, page, state.pageSize)
-    }
-
-    const handleSearch=(event)=>{
-        event.preventDefault()
-        //setState({...state,keyword: query})
-        handleGetProducts(query,1,state.pageSize)
-        //getProducts(state.keyword,state.currentPage,state.pageSize)
     }
 
     return (
@@ -81,23 +73,9 @@ export default function Products() {
                         <div className={"card-body"}>
                             <h3>Products Componenet</h3>
                             <div className={"card-body"}>
-                                <form onSubmit={handleSearch}>
-                                    <div className={" row g-2"}>
-                                        <div className={"col-auto"}>
-                                            <input
-                                                className="form-control"
-                                                type="text"
-                                                value={query}
-                                                onChange={(e)=>setQuery(e.target.value)}
-                                            />
-                                        </div>
-                                        <div className={"col-auto"}>
-                                            <button className={"btn btn-success"}>
-                                                <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon> Search
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
+                                <SearchForm
+                                    handleGetProducts={handleGetProducts}
+                                ></SearchForm>
                             </div>
                             <table className={"table"}>
                                 <thead>
